@@ -1,5 +1,7 @@
 package edu.cjc.sms.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,8 @@ public class AdminController {
 	@RequestMapping("/login")
 	public String onlogin(@RequestParam String username,@RequestParam String password,Model m) {
 		if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
+			List<Student> student=ss.getAllStudent();
+			m.addAttribute("data", student);
 			return "adminscreen";
 		}
 		else {
@@ -31,11 +35,23 @@ public class AdminController {
 		}
 	}
 	@RequestMapping("enroll_student")
-	public String saveStudent(@ModelAttribute Student student) {
+	public String saveStudent(@ModelAttribute Student student ,Model m) {
 		ss.saveStudentDatails(student);
+		List<Student> students=ss.getAllStudent();
+		m.addAttribute("data", students);
 		return "adminscreen";
 		
 	}
+	@RequestMapping("/delete")
+	public String removeStudent(@RequestParam("rollno") int rollno,Model m) {
+		ss.deleteStudent(rollno);
+		List<Student> students=ss.getAllStudent();
+		m.addAttribute("data", students);
+		return "adminscreen";
+
+		
+	}
+	
 	
 
 }

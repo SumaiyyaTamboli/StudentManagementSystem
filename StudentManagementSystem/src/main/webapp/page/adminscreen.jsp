@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -8,13 +9,34 @@
 <link 
 href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwy
 kc2MPK8M2HN" crossorigin="anonymous"> 
+<style type="text/css"> 
+   .enroll{ 
+   background-image: url("image/student_registration_form_Free13-12-2017_1736833576-600x381.jpg"); 
+   background-size: cover; 
+   background-repeat:no-repeat; 
+   } 
+   .heading{ 
+     font-family:cursive; 
+    text-align: center; 
+    margin-bottom: 20px; 
+   } 
+   form{ 
+   width:400px 
+   } 
+   .view{ 
+      background-image: url("images/viewstudents.jpeg"); 
+   background-size: cover; 
+   background-repeat: no-repeat; 
+   background-color: pink;
+   } 
+ </style> 
 
 </head>
 <body>
 <h1>Admin Screen...!</h1>
  <div class="card"> 
  <nav class="d-flex justify-content-between p-2 border border-primary" > 
-  <img src="images/cjclogo.jpeg" width="100px" height="50px">  
+  <img src="image/cjc.jpg" width="100px" height="50px">  
   <div class="pt-2"> 
   <a href="#enroll"> 
     <button class="btn btn-outline-primary">Enroll Student</button> 
@@ -106,10 +128,8 @@ checked />
  
                 </div> 
                
-              </div> 
- 
-              <div class="row"> 
-                <div class="col"> 
+            
+                 <div class="col"> 
  
                   <select class="select form-control-sm" name="batchMode"> 
                     <option value="#" disabled >Select Batch Mode</option> 
@@ -123,29 +143,18 @@ checked />
                  <div class="col"> 
  
                   <select class="select form-control-sm" name="batchNumber"> 
-                    <option value="#" disabled >Select Batch Mode</option> 
-                    <option value="Online">Online</option> 
-                    <option value="Offline">Offline</option> 
-                    
-                  </select> 
-                  <label class="form-label select-label">Batch Mode</label> 
- 
-                </div> 
-                 <div class="col"> 
- 
-                  <select class="select form-control-sm" name="batchNumber"> 
                     <option value="#" disabled>Select Batch Number</option> 
-                    <option value="FDJ-160">FDJ-160</option> 
-                    <option value="REG-160">REG-160</option> 
-                    <option value="FDJ-161">FDJ-161</option> 
-                    <option value="REG-161">REG-162</option>
-                <option value="REG-162">REG-162</option> 
-                    <option value="FDJ-163">FDJ-163</option> 
-                    <option value="REG-163">REG-163</option> 
-                    <option value="FDJ-164">FDJ-164</option> 
-                    <option value="REG-164">REG-164</option> 
-                    <option value="FDJ-165">FDJ-165</option> 
-                    <option value="REG-165">REG-165</option> 
+                    <option value="FDJ-190">FDJ-190</option> 
+                    <option value="REG-191">REG-191</option> 
+                    <option value="FDJ-192">FDJ-192</option> 
+                    <option value="REG-193">REG-193</option>
+                <option value="REG-194">REG-194</option> 
+                    <option value="FDJ-195">FDJ-195</option> 
+                    <option value="REG-196">REG-196</option> 
+                    <option value="FDJ-197">FDJ-197</option> 
+                    <option value="REG-198">REG-198</option> 
+                    <option value="FDJ-199">FDJ-199</option> 
+                    <option value="REG-200">REG-200</option> 
                   </select> 
                   <label class="form-label select-label">Batch Number</label> 
  
@@ -166,6 +175,56 @@ checked />
  
  <section class="view" style="height:530px" id="view"> 
   <h1>View Student</h1>
+  <h1 class="text-center">Student Details..!</h1> 
+     <table class="table table-bordered border-primary" style="font-size: 
+small"> 
+        <thead> 
+         <tr> 
+           <th>ID</th> 
+           <th>Student Name</th> 
+           <th>Student Email</th> 
+           <th>Age</th> 
+           <th>Collage Name</th> 
+           <th>Course Name</th> 
+           <th>Bath No</th> 
+           <th>Mode</th> 
+           <th>Fess Recived</th> 
+           <th>Actions</th> 
+         </tr> 
+        </thead> 
+        <tbody> 
+        <c:forEach items="${data}" var="s"> 
+          <tr> 
+           <td>${s.studentId}</td> 
+           <td>${s.studentFullName}</td> 
+           <td>${s.studentEmail}</td> 
+           <td>${s.studentAge}</td> 
+           <td>${s.studentCollageName}</td> 
+           <td>${s.studentCourse}</td> 
+           <td>${s.batchNumber}</td> 
+           <td>${s.batchMode}</td> 
+           <td>${s.feesPaid}</td> 
+           <td> 
+  
+           <div class="btn-group btn-group-sm" role="group" 
+aria-label="..."> 
+           <button class="btn btn-outline-success">Pay_Fees</button>
+              <button class="btn btn-outline-primary">Shift
+Batch</button> 
+           <a class="btn btn-outline
+danger" href="delete?rollno=${s.studentId }" >Remove</a> 
+            
+           </div> 
+             
+           </td> 
+            
+          </tr> 
+        </c:forEach> 
+         
+        </tbody> 
+      
+     </table>
+           
   </section>
        
 </body>
