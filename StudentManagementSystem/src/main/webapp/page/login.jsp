@@ -8,6 +8,13 @@
 <link 
 href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwy
 kc2MPK8M2HN" crossorigin="anonymous"> 
+<style type="text/css"> 
+   body{ 
+   background-image: url("image/backimage.jpg"); 
+   background-size: cover; 
+   background-repeat:no-repeat; 
+   } 
+   </style>
 
 </head>
 <body>
@@ -37,7 +44,7 @@ placeholder="Enter username" name="username" required>
               <label for="password" class="form-label text
 white">Password</label> 
               <input type="password" class="form-control" id="password" 
-placeholder="Enter password" name="password" required> 
+placeholder="Enter password" name="password" required>
             </div> 
             <!-- Button --> 
             <div class="d-grid"> 

@@ -30,6 +30,25 @@ kc2MPK8M2HN" crossorigin="anonymous">
    background-color: pink;
    } 
  </style> 
+ <script type="text/javascript"> 
+  
+    function fees() 
+    { 
+    document.fn.action="/fees" 
+    document.action.submit(); 
+    } 
+    function batch() 
+    { 
+    document.fn.action="/batch" 
+    document.action.submit(); 
+    } 
+    function remove() 
+    { 
+    document.fn.action="/remove" 
+    document.action.submit(); 
+    } 
+  
+ </script>
 
 </head>
 <body>
@@ -174,10 +193,43 @@ checked />
 </section> 
  
  <section class="view" style="height:530px" id="view"> 
-  <h1>View Student</h1>
+  <section class="view" style="height:530px" id="view"> 
+     <h1 class="text-center ">Student Details..!</h1> 
+     <div class="text-center w-100"> 
+     <form action="search" class="w-100"> 
+      <select class="select form-control-sm border border-primary" 
+name="batchNumber"> 
+                    <option value="#" slected>Select Batch Number</option> 
+                    <option value="FDJ-190">FDJ-190</option> 
+                    <option value="REG-191">REG-191</option> 
+                    <option value="FDJ-192">FDJ-192</option> 
+                    <option value="REG-193">REG-193</option> 
+                    <option value="FDJ-194">FDJ-194</option> 
+                    <option value="REG-195">REG-195</option> 
+                    <option value="FDJ-196">FDJ-196</option> 
+                    <option value="REG-197">REG-197</option> 
+                    <option value="FDJ-198">FDJ-198</option> 
+                    <option value="REG-199">REG-199</option> 
+                    <option value="FDJ-200">FDJ-200</option> 
+                    <option value="REG-201">REG-201</option> 
+                  </select> 
+                   <select class="select form-control-sm border border-primary" 
+name="batchMode"> 
+                    <option value="#" slected>Select Batch Mode</option> 
+                    <option value="online">Online</option> 
+                    <option value="offline">Offline</option> 
+                    </select>
+                 
+                <button class="btn btn-outline-primary mb-1">Search</button>                 
+           </form> 
+   <marquee> 
+        <h1 style="color: red;"> 
+           ${message } 
+        </h1> 
+   </marquee> 
   <h1 class="text-center">Student Details..!</h1> 
-     <table class="table table-bordered border-primary" style="font-size: 
-small"> 
+   <form name="fn"> 
+     <table class="table table-hover" style="font-size: small"> 
         <thead> 
          <tr> 
            <th>ID</th> 
@@ -189,6 +241,7 @@ small">
            <th>Bath No</th> 
            <th>Mode</th> 
            <th>Fess Recived</th> 
+           <th>Select</th> 
            <th>Actions</th> 
          </tr> 
         </thead> 
@@ -205,16 +258,16 @@ small">
            <td>${s.batchMode}</td> 
            <td>${s.feesPaid}</td> 
            <td> 
+           <input type="radio" name="id" value="${s.studentId}"> 
+           </td> 
+           <td> 
   
-           <div class="btn-group btn-group-sm" role="group" 
-aria-label="..."> 
-           <button class="btn btn-outline-success">Pay_Fees</button>
-              <button class="btn btn-outline-primary">Shift
-Batch</button> 
-           <a class="btn btn-outline
-danger" href="delete?rollno=${s.studentId }" >Remove</a> 
-            
-           </div> 
+           <div class="btn-group btn-group-sm" role="group" aria-label="..."> 
+   
+           <button class="btn btn-outline-success" onClick="fees()">Pay-Fees</button> 
+            <button class="btn btn-outline-primary" onClick="batch()">Shift-Batch</button> 
+           <a class="btn btn-outline-danger" href="remove?rollno=${s.studentId }">Remove</a> 
+         </div> 
              
            </td> 
             
@@ -224,7 +277,7 @@ danger" href="delete?rollno=${s.studentId }" >Remove</a>
         </tbody> 
       
      </table>
-           
+     </form>
   </section>
        
 </body>

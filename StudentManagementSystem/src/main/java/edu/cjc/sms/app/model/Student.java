@@ -18,7 +18,7 @@ private String studentCollageName;
 private String studentCourse;
 private String batchNumber;
 private String batchMode;
-private String feesPaid;
+private double feesPaid;
 public int getStudentId() {
 	return studentId;
 }
@@ -67,10 +67,10 @@ public String getBatchMode() {
 public void setBatchMode(String batchMode) {
 	this.batchMode = batchMode;
 }
-public String getFeesPaid() {
+public double getFeesPaid() {
 	return feesPaid;
 }
-public void setFeesPaid(String feesPaid) {
+public void setFeesPaid(double feesPaid) {
 	this.feesPaid = feesPaid;
 
 

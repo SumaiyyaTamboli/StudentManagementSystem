@@ -42,7 +42,7 @@ public class AdminController {
 		return "adminscreen";
 		
 	}
-	@RequestMapping("/delete")
+	@RequestMapping("/remove")
 	public String removeStudent(@RequestParam("rollno") int rollno,Model m) {
 		ss.deleteStudent(rollno);
 		List<Student> students=ss.getAllStudent();
@@ -51,7 +51,48 @@ public class AdminController {
 
 		
 	}
-	
-	
+	@RequestMapping("/search")
+	public String getStudentBatch(@RequestParam("batchNumber") String batchNumber,@RequestParam("batchMode") String batchMode,Model m)
+	{
+		List<Student> result=ss.searchStudentByBatch(batchNumber,batchMode);
+		if(result.size()>0) {
+			m.addAttribute("data",result);
+		}
+		else {
+			
+			List<Student> list=ss.getAllStudent();
+			m.addAttribute("data", list);
+			m.addAttribute("message", "No record found for that batch");
+			
+		}
+		return"adminscreen";
+	}
+	@RequestMapping("/fees")
+	public String onFees(@RequestParam int id,Model m) {
+		Student st=ss.getSingleStudent(id);
+		m.addAttribute("st",st);
+		return "fees";
+		}
+	@RequestMapping("/payfees")
+public String payFees(@RequestParam("studentid") int studentid,@RequestParam("ammount") double ammount,Model m) {
+	ss.updateStudentFees(studentid,ammount);
+	List<Student> students=ss.getAllStudent();
+	m.addAttribute("data", students);
+	return "adminscreen";
 
+}
+	@RequestMapping("/batch")
+	public String onBatch(@RequestParam int id,Model m) {
+		Student st=ss.getSingleStudent(id);
+		m.addAttribute("st",st);
+		return "batch";
+		}
+	@RequestMapping("/updatebatch")
+public String updateBatch(@RequestParam("studentid") int studentid,@RequestParam("batchNumber") String batchNumber,Model m) {
+	ss.updateBatch(studentid,batchNumber);
+	List<Student> students=ss.getAllStudent();
+	m.addAttribute("data", students);
+	return "adminscreen";
+
+}
 }
